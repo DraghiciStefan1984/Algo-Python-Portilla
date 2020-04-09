@@ -71,3 +71,53 @@ def largest_continuous_sum(arr):
         curent_sum=max(curent_sum+num, num)
         max_sum=max(curent_sum, max_sum)
     return max_sum
+
+
+def reverse_sentence(s):
+    words=[]
+    length=len(s)
+    spaces=[' ']
+    i=0
+    while i<length:
+        if s[i] not in spaces:
+            word_start=i
+            while i<length and s[i] not in spaces:
+                i+=1
+            words.append(s[word_start:i])
+        i+=1
+    return ' '.join(reversed(words))
+
+
+def string_compression(s):
+    r=''
+    l=len(s)
+    if l==0:
+        return ''
+    if l==1:
+        return s+'1'
+    last=s[0]
+    count=1
+    i=0
+    while i<l:
+        if s[i]==s[i-1]:
+            count+=1
+        else:
+            r=r+s[i-1]+str(count)
+            count=1
+        i+=1
+    r=r+s[i-1]+str(count)
+    return r
+
+
+def unique_chars_1(s):
+    return len(set(s))==len(s)
+
+
+def unique_chars_2(s):
+    chars=set()
+    for let in s:
+        if let in chars:
+            return False
+        else:
+            chars.add(let)
+    return True
